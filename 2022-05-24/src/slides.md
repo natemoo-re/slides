@@ -3,7 +3,7 @@ layout: cover
 title: WebAssembly in the JavaScript Ecosystem
 highlighter: shiki
 colorSchema: dark
-download: true
+download: https://github.com/natemoo-re/slides/raw/main/2022-05-24/2022-05-24-wasm-chicago.pdf
 ---
 
 <div class="flex gap-8 px-10 justify-center scale-120 transform">
