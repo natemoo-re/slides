@@ -28,6 +28,13 @@ Unlocking new possibilities with hybrid tooling
   </div>
 </div>
 
+<!-- 
+- Look at WebAssembly specifically in JS/TS ecosystems
+- Focus on Node + Deno
+- Wasm's potential for building tools that would have been previously impossible
+- Get into what "hybrid" tooling means and a few examples
+-->
+
 ---
 layout: 'intro'
 ---
@@ -50,6 +57,14 @@ Senior Software Engineer at <a href="https://astro.build" target="_blank">The As
 </div>
 
 <img src="/me.jpeg" class="rounded-full w-40 abs-tr mt-30 mr-20"/>
+
+<!-- 
+- Co-creator of Astro, modern tool for server-side websites with minimal client-side JS
+  - Core maintainer, awesome community
+  - Technical lead on Astro compiler, how I got into WebAssembly
+- Created a bunch of open-source projects
+- Work at ATC, team previously behind Snowpack and Skypack
+-->
 
 ---
 
@@ -74,6 +89,12 @@ JavaScript grows from a site scripting toy language to full application platform
 
 [^1]: As described by [@swyx](https://www.swyx.io/js-third-age/#the-third-age)
 
+<!-- 
+### Sets the stage for a new "changing of the guard"
+- Coined by Shawn Wang
+- Started in 2020
+-->
+
 ---
 
 # The Third Age of JavaScript [^1]
@@ -88,6 +109,12 @@ JavaScript grows from a site scripting toy language to full application platform
 
 [^1]: As described by [@swyx](https://www.swyx.io/js-third-age/#the-third-age)
 
+<!-- 
+### `esbuild` is the perfect example
+- Fundamental shift for JS devs
+- Push to native _for_ JS, at least for low-level tools
+-->
+
 ---
 layout: center
 class: text-center
@@ -97,6 +124,11 @@ class: text-center
 
 <p class="text-transparent">&ldquo;The reports of my death are greatly exaggerated.&rdquo;</p>
 
+<!-- 
+### Mostly hype, haven't seen signs yet
+- Chance at a "do-over" for the web
+-->
+
 ---
 layout: center
 class: text-center
@@ -105,6 +137,12 @@ class: text-center
 # WebAssembly: The JavaScript Killer?
 
 <p>&ldquo;The reports of my death are greatly exaggerated.&rdquo;</p>
+
+<!-- 
+### JavaScript isn't going anywhere
+- Both technologies play well with each other
+- Ecosystem is slowly becoming more reliant on WebAssembly
+-->
 
 ---
 
@@ -121,6 +159,12 @@ Name a more iconic duo!
 – WebAssembly Concepts, [MDN](https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts)
 
 </blockquote>
+
+<!-- 
+### MDN highlights motivations behind WebAssembly
+- Not a replacement, but a complement
+- The takeaway being... JS is good! Wasm is good! Use the right tool for the task at hand.
+-->
 
 ---
 
@@ -149,6 +193,21 @@ Name a more iconic duo!
 
 </div>
 </div>
+
+
+<!--
+#### JS
+- High-level
+- Doesn't require a build step
+- Dynamic language, so flexible and expressive
+- Has an incredible ecosystem in Node (and increasingly Deno)
+
+#### Wasm
+- Low-level
+- Usually not hand-written, but compiled to
+- Great performance characteristics
+- Big one for me: portable. You can take your `.wasm` anywhere (Node, Deno, browsers, other Wasm runtimes)
+-->
 
 ---
 
@@ -185,6 +244,17 @@ Takes full advantage of both JavaScript and WebAssembly's strengths
 
 </div>
 </div>
+
+<!-- 
+### I've mentioned this idea of Hybrid tooling, what is it?
+- Plays to both languages strengths
+- Surface-level, just a JavaScript module
+- Benefits of that are seamless, user-friendly APIs, and approachability
+
+- Internally, leverages Wasm to handle internal tasks
+- Focus on computationally expensive things
+- Super performant, will see that this is common among examples
+-->
 
 ---
 
@@ -225,6 +295,21 @@ Takes full advantage of both JavaScript and WebAssembly's strengths
 </div>
 </div>
 
+<!-- 
+### Like everything, there are tradeoffs
+- Good!
+  - Standardized
+  - portable format
+  - shared primitives
+  - bridge between ecosystems
+- Bad!
+  - Comfort zone
+  - tools are young, Rust invested the most!
+  - slower than native, maybe this gap will close?
+  - contributors
+-->
+
+
 ---
 layout: center
 class: text-center
@@ -255,11 +340,22 @@ class: text-center
 
 </v-clicks>
 
+<!-- 
+### The big one, `esbuild`
+- Big caveat, author prefers native binaries
+- Mostly fixable problems
+-->
+
 ---
 
 <div class="p-8 flex justify-center items-center">
   <img src="/esbuild-meme.png" class="h-100 transform scale-120" />
 </div>
+
+<!-- 
+- Complexity in loading proper binaries
+- Wasm solves a huge pain point
+-->
 
 ---
 
@@ -461,6 +557,16 @@ const { items } = await fetch('https://service.dev/api/v1/items').then(res => re
 </style>
 ```
 
+<!-- 
+- Quick look at Astro's syntax
+- Component-based
+- Use components from JavaScript Frameworks (React, Svelte, Vue, etc)
+  - `client:*` loading directives
+- JS with top-level await in frontmatter
+- JSX-like expressions
+- Automatically scoped styles
+-->
+
 ---
 
 <Example name="astro" description="A website build tool for the modern web" url="https://github.com/withastro/astro" />
@@ -506,6 +612,11 @@ func preprocessStyle(i int, style *astro.Node, transformOptions transform.Transf
 	return data[0].Get("code").String()
 }
 ```
+
+<!-- 
+Very hard (but maybe possible?) to do this with native bindings
+-->
+
 
 ---
 layout: center
