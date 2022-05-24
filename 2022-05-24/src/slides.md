@@ -29,10 +29,14 @@ Unlocking new possibilities with hybrid tooling
 </div>
 
 <!-- 
+- Loved Brian's talk at the last meetup, reached out about presenting
+- Really appreciate working with Dan to make this happen
+
+
 - Look at WebAssembly specifically in JS/TS ecosystems
-- Focus on Node + Deno
+- Focus on Node + Deno, that's what I'm into 
 - Wasm's potential for building tools that would have been previously impossible
-- Get into what "hybrid" tooling means and a few examples
+- Get into concept of "hybrid" tooling and look at some exciting examples
 -->
 
 ---
@@ -49,9 +53,9 @@ Senior Software Engineer at <a href="https://astro.build" target="_blank">The As
 
 <div class="my-10 grid grid-cols-[40px,1fr] w-max gap-y-4">
   <ri-github-line class="opacity-50"/>
-  <div><a href="https://github.com/natemoo-re" target="_blank">natemoo-re</a></div>
+  <div><a href="https://nmoo.dev/on/github" target="_blank">natemoo-re</a></div>
   <ri-twitter-line class="opacity-50"/>
-  <div><a href="https://twitter.com/n_moore" target="_blank">n_moore</a></div>
+  <div><a href="https://nmoo.dev/on/twitter" target="_blank">n_moore</a></div>
   <ri-user-3-line class="opacity-50"/>
   <div><a href="https://nmoo.dev" target="_blank">nmoo.dev</a></div>
 </div>
@@ -59,11 +63,12 @@ Senior Software Engineer at <a href="https://astro.build" target="_blank">The As
 <img src="/me.jpeg" class="rounded-full w-40 abs-tr mt-30 mr-20"/>
 
 <!-- 
-- Co-creator of Astro, modern tool for server-side websites with minimal client-side JS
-  - Core maintainer, awesome community
-  - Technical lead on Astro compiler, how I got into WebAssembly
-- Created a bunch of open-source projects
-- Work at ATC, team previously behind Snowpack and Skypack
+- Co-creator of Astro, does many things, but it's a new tool for building websites on the server and shipping minimal client-side JS
+  - I'm a core maintainer, great team of folks, enthusiastic community
+  - Was technical lead on Astro compiler, started my interest in WebAssembly
+- I've worked on a bunch of smaller open-source projects
+- Work at Astro Tech Co, same team behind Snowpack and Skypack
+  - Now we're focused on supporting Astro, building community up 
 -->
 
 ---
@@ -74,7 +79,7 @@ JavaScript grows from a site scripting toy language to full application platform
 
 <div class="h-90">
 
-<v-clicks>
+<v-click>
 
 - Faster tooling
 - ESM first
@@ -83,7 +88,7 @@ JavaScript grows from a site scripting toy language to full application platform
 - More secure
 - Polyglot (Native, but increasingly **WebAssembly**)
 
-</v-clicks>
+</v-click>
 
 </div>
 
@@ -218,29 +223,29 @@ Takes full advantage of both JavaScript and WebAssembly's strengths
 <div class="grid grid-cols-2 mt-8 mb-16">
 <div>
 
-## Traits
+<v-click>
 
-<v-clicks>
+## Traits
 
 - JavaScript/TypeScript module on surface
 - Seamless integration with Node/Deno ecosystem
 - Offers high-level, user-friendly APIs
 - Low barrier to entry
 
-</v-clicks>
+</v-click>
 
 </div>
 <div>
 
 <h2 class="text-transparent">Traits</h2>
 
-<v-clicks>
+<v-click>
 
 - WebAssembly powers low-level, internal APIs
 - Focus on compute-heavy tasks (parsing, compiling)
 - Delivers near-native performance
 
-</v-clicks>
+</v-click>
 
 </div>
 </div>
@@ -267,22 +272,18 @@ Takes full advantage of both JavaScript and WebAssembly's strengths
 
 ## Benefits
 
-<v-clicks>
-
 - Built on web standards
 - Compile a single `.wasm` file
 - Shared data primitives
 - Fully portable (Node, Deno, Browsers)
 - Bridge ecosystem gaps
 
-</v-clicks>
-
 </div>
 <div>
 
-## Tradeoffs
+<v-click>
 
-<v-clicks>
+## Tradeoffs
 
 - New workflow, out of comfort zone
 - Immature tooling
@@ -290,7 +291,7 @@ Takes full advantage of both JavaScript and WebAssembly's strengths
 - Context-switching for 3 languages
 - Maintenance cost, harder to contribute
 
-</v-clicks>
+</v-click>
 
 </div>
 </div>
@@ -323,27 +324,31 @@ class: text-center
 
 <img v-click src="/esbuild.svg" class="w-full" />
 
-<v-clicks>
+<v-click>
 
 - Written in Go
 - Includes JS and CSS parsers and compilers, fully featured JS bundler
 - Powers next-gen build tools like [Vite](https://vitejs.dev/)
 - Native bindings for Node and Deno, `.wasm` bindings for the web (automatic in [StackBlitz](https://stackblitz.com/))
 
-</v-clicks>
+</v-click>
 
 <div class="mt-4" />
 
-<v-clicks>
+<v-click>
 
 > The WebAssembly version is much, much slower than the native version. In many cases it is an order of magnitude (i.e. 10x) slower. This is for various reasons including a) node re-compiles the WebAssembly code from scratch on every run, b) Go's WebAssembly compilation approach is single-threaded, and c) node has WebAssembly bugs that can delay the exiting of the process by many seconds.
 
-</v-clicks>
+</v-click>
 
 <!-- 
 ### The big one, `esbuild`
-- Big caveat, author prefers native binaries
-- Mostly fixable problems
+- Written in Go
+- Fully featured web stack bundler
+- Being used as low-level tool in a lot of popular projects
+- Does have native bindings, but used Wasm for browser
+  - Big caveat, author prefers native binaries
+  - Some Node and Go-specific issues that are solvable
 -->
 
 ---
@@ -353,15 +358,15 @@ class: text-center
 </div>
 
 <!-- 
-- Complexity in loading proper binaries
-- Wasm solves a huge pain point
+- The internal code `esbuild` uses to load the proper binary is incredibly complex
+- Could just use a single Wasm file
 -->
 
 ---
 
 <Example name="es-module-lexer" description="Low-overhead lexer dedicated to ES module parsing for fast analysis" url="https://github.com/guybedford/es-module-lexer" />
 
-<v-clicks>
+<v-click>
 
 
 ```js
@@ -375,32 +380,36 @@ const [imports, exports] = parse(`
 `);
 ```
 
-</v-clicks>
+</v-click>
 
 <div class="mt-8" />
 
-<v-clicks>
+<v-click>
 
 - Written in C
 - Spec-compliant JavaScript lexer
 - Extracts static `import` statements, `export` statements, and dynamic `import()` usage
 - Claims speed of about **5ms per MB**
 
-</v-clicks>
-
 <div class="mt-8" />
-
-<v-clicks>
 
 > Angular 1 (720KiB) is fully parsed in 5ms, in comparison to the fastest JS parser, Acorn which takes over 100ms.
 
-</v-clicks>
+</v-click>
+
+<!-- 
+### Guy Bedford's `es-module-lexer`
+- Really great tool for creating module graphs
+- Incredibly for static analysis
+- Used internally in Node core
+- Benchmarks are way above the closest JS alternatives
+ -->
 
 ---
 
 <Example name="shiki" description="A beautiful Syntax Highlighter" url="https://shiki.matsu.io/" />
 
-<v-clicks>
+<v-click>
 
 ```js
 import shiki from 'shiki';
@@ -409,24 +418,34 @@ const highlighter = await shiki.getHighlighter({ theme: 'github-dark' });
 const code = highlighter.codeToHtml(/* source */, { lang: 'js' });
 ```
 
-</v-clicks>
+</v-click>
 
 <div class="mt-8" />
 
-<v-clicks>
+<v-click>
 
 - High-level JS library, but dependency is written in C
 - First JavaScript syntax highlighter with editor-level fidelity (matches [Visual Studio Code](https://code.visualstudio.com/))
 - Works with TextMate grammars and Code themes
 - Powered by [`vscode-oniguruma`](https://github.com/microsoft/vscode-oniguruma), WebAssembly bindings for [`oniguruma`](https://github.com/kkos/oniguruma) RegExp library
 
-</v-clicks>
+</v-click>
+
+<!-- 
+### One of the best examples of WebAssembly's potential, `shiki`
+- The kind of package that would have been impossible before Wasm
+- Textmate grammars feature incredibly complex Regular Expression syntax
+- Semantics are very specific, difficult to emulate in JS
+- Every previous highlighter looked "off", Shiki is first with editor-level fidelity
+- Output matches Visual Studio Code
+- Uses same `oniguruma` bindings as VS Code to execute textmate grammar files
+ -->
 
 ---
 
 <Example name="goldmark" description="A very fast Markdown compiler for Deno" url="https://deno.land/x/goldmark" />
 
-<v-clicks>
+<v-click>
 
 ```ts
 import { init, transform } from "https://deno.land/x/goldmark/mod.ts";
@@ -436,26 +455,31 @@ const markdown = await Deno.readTextFile(new URL('./content.md', import.meta.url
 const { frontmatter, content } = await transform(markdown, /* opts */);
 ```
 
-</v-clicks>
+</v-click>
 
 <div class="mt-8" />
 
-<v-clicks>
+<v-click>
 
 - Written in Go
 - WebAssembly bindings for [Goldmark](https://github.com/yuin/goldmark), a CommonMark-compliant Markdown parser
 - Original package powers [Hugo](https://gohugo.io/)
 - Deno's adherence to web platform spec makes working with WebAssembly easy
 
-</v-clicks>
-
 <div class="mt-8" />
-
-<v-clicks>
 
 > Sampling **100,000 runs** completed in **58s** with an average run of **0.57ms** per file.
 
-</v-clicks>
+</v-click>
+
+<!-- 
+### One of my own projects, a Deno port of the popular `goldmark` Markdown parser
+- Perfect example of Wasm's ability to bridge ecosystem gaps
+- Didn't see a Markdown library I liked in Deno, ported one I loved from Go
+- Potential for ecosystems to cross-pollinate
+- Goldmark powers Hugo, we've discussed a Node port that could be used for Astro
+- Deno is all-in on WebAssembly, if you're excited about this space—the innovation is happening in Deno
+ -->
 
 ---
 
@@ -508,22 +532,29 @@ const { frontmatter, content } = await transform(markdown, /* opts */);
 </div>
 </div>
 
+<!-- 
+### Sample of what the incredible `@parcel/css` library can do
+- Throw incredibly complex, bleeding-edge CSS at it
+- Get small, efficiently down-leveled CSS that works in every browser
+ -->
+
 ---
 
 <Example name="@parcel/css" description="A CSS parser, transformer, and minifier written in Rust" url="https://github.com/parcel-bundler/parcel-css" />
 
 - Written in Rust
-
-<v-clicks>
-
 - Lowers modern CSS syntax to be compatible with configurable browser targets
 - **Browser-grade** CSS parser, powered by Mozilla's own [`cssparser`](https://github.com/servo/rust-cssparser) and [`selectors`](https://github.com/servo/servo/tree/master/components/selectors) crates
-
-</v-clicks>
 
 <div class="mt-8" />
 
 <img v-click src="/parcelcss.png" class="w-full" />
+
+<!-- 
+### `@parcel/css` part of Parcel bundler
+- Main bundler uses Rust-based `swc` package as an alternative to Babel
+- Use the exact same crates that power Firefox's CSS! Again, impossible without WebAssembly
+ -->
 
 ---
 
@@ -535,7 +566,7 @@ const { frontmatter, content } = await transform(markdown, /* opts */);
 
 **Astro DSL**
 
-```astro {all|2,7,13|3,12|4|9|15-19|all}
+```astro {all|1-5|6-19|2,7,13|3,12|4|9|15-19|all}
 ---
 import Layout from '../components/Layout.astro';
 import Counter from '../components/Layout.tsx'; // or vue, svelte, etc
@@ -558,7 +589,18 @@ const { items } = await fetch('https://service.dev/api/v1/items').then(res => re
 ```
 
 <!-- 
-- Quick look at Astro's syntax
+## Spend a bit more time on Astro, since it's the project I'm most involved in.
+
+For some context, Astro has a custom DSL with `.astro` files. 
+
+They're server-side templates that contain some data fetching logic and some markup.
+Unlike every other framework which started in the browser and back-ported server compatability,
+Astro is proudly designed to run on the server.
+
+Let's take a look at an `.astro` file.
+
+- Frontmatter
+- Markup
 - Component-based
 - Use components from JavaScript Frameworks (React, Svelte, Vue, etc)
   - `client:*` loading directives
@@ -571,19 +613,26 @@ const { items } = await fetch('https://service.dev/api/v1/items').then(res => re
 
 <Example name="astro" description="A website build tool for the modern web" url="https://github.com/withastro/astro" />
 
-- High-level JS library, but compiler is written in Go
-
-<v-clicks>
-
-- Features custom `.astro` DSL for building server-side websites
-- Truly Hybrid: leverages WebAssembly for compute-heavy tasks, everything else is JavaScript
+- Compiler is written in Go, rest is JavaScript
+- Leverages WebAssembly for compute-heavy tasks, everything else is JavaScript
 - Why Go?
   - Iteration speed
   - Proximity to `esbuild`
-  - Superset of HTML, leverage Go's `std` library
+  - Superset of HTML, borrow from Go's `std` library
 - Ability to communicate between JS <=> Wasm
 
-</v-clicks>
+<!-- 
+- Compiler written in Go
+- Lean on WebAssembly to make compilation performant, everything else can use JavaScript
+- Balance was important to keep new contributors interested, compiler in separate repo
+- Get a lot of questions why we chose Go (when Rust is so far ahead)
+  - Go is fast to learn coming from JavaScript
+  - Incredibly fast to prototype
+  - Close to `esbuild`, a lot to take inspiration from
+  - Spec-compliance is hard, Go had a a `std` module 
+- Most exciting feature: the ability to communicate between JS and Wasm
+- Would be really complex with old-school native bindings
+-->
 
 ---
 
@@ -614,9 +663,11 @@ func preprocessStyle(i int, style *astro.Node, transformOptions transform.Transf
 ```
 
 <!-- 
-Very hard (but maybe possible?) to do this with native bindings
+- JS API that we use internally to transform an `.astro` file
+- Some Go code which is invoked by `transform`
+- Can use a goroutine to block the program while we're waiting for the JS promise to resolve
+- Really difficult to directly pass a function reference like this!
 -->
-
 
 ---
 layout: center
@@ -627,6 +678,11 @@ class: "text-center"
 
 <h2 v-click class="opacity-50">Use the best tool (from any ecosystem) for the job</h2>
 
+<!-- 
+WebAssembly is not a replacement for JavaScript.
+It allows us to use the right tool for the job, regardless of ecosystem
+-->
+
 ---
 layout: center
 class: "text-center"
@@ -635,3 +691,11 @@ class: "text-center"
 # Thank you!
 
 Slides can be found at [nmoo.dev/slides](https://nmoo.dev/slides)
+
+<!-- 
+Really appreciate the opportunity to geek out about this stuff!
+
+- Find these slides (and all project links) at `nmoo.dev/slides`
+- Find me on Twitter, `@n_moore`
+- Check out Astro, `astro.build`
+-->
